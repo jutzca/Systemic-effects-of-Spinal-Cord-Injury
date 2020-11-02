@@ -12,9 +12,9 @@ Results. At baseline (≤ 2 weeks post-injury), the majority of the hematologica
 
 Conclusions and Relevance. Due to trauma-induced physiological perturbations, hematological markers undergo marked changes over the course of recovery, from initial pathological levels that normalize within a year. The findings from this study are important as they provide a benchmark for clinical decision making and prospective clinical trials. All results can be explored interactively on the [Haemosurveillance website](https://jutzelec.shinyapps.io/Haemosurveillance/).
 
-### Funding: 
+### Funding 
 This study was funded by research grants from the [Swiss National Science Foundation](http://p3.snf.ch/project-186101)(Ambizione Grant #PZ00P3_186101, Jutzeler) and [Wings for Life Research Foundation](https://www.wingsforlife.com/de/forschung/) (#2017_044, Jutzeler and Kramer). 
 
-### Contact: 
+### Contact 
 [Lucie Bourguignon](mailto:lucie.Bourguignon@bsse.ethz.ch?subject=[GitHub]%20Source%20Han%20Sans) or [Dr. Catherine Jutzeler](mailto:catherine.jutzeler@bsse.ethz.ch?subject=[GitHub]%20Source%20Han%20Sans)
 
