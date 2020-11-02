@@ -1,6 +1,7 @@
 ## Natural Progression of Routine Laboratory Markers following Spinal Cord Injury: A longitudinal and multi-cohort observational study
 
-**Authors** Lucie Bourguignon, Anh Khoa Vo, Bobo Tong, Fred Geisler, Orpheus Mach, Doris Maier, John L.K. Kramer, Lukas Grassner, and Catherine R. Jutzeler
+#### Authors
+Lucie Bourguignon, Anh Khoa Vo, Bobo Tong, Fred Geisler, Orpheus Mach, Doris Maier, John L.K. Kramer, Lukas Grassner, and Catherine R. Jutzeler
 
 ### Abstract
 Objective.  To track and quantify the natural course of hematological markers over the first year following spinal cord injury.
