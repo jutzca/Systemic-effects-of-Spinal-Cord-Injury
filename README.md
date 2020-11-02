@@ -2,6 +2,7 @@
 
 *Authors: Lucie Bourguignon, Anh Khoa Vo, Bobo Tong, Fred Geisler, Orpheus Mach, Doris Maier, John L.K. Kramer, Lukas Grassner, and Catherine R. Jutzeler*
 
+### Abstract: 
 Objective.  To track and quantify the natural course of hematological markers over the first year following spinal cord injury.
 
 Methods.  Data on hematological markers, demographics, and injury characteristics were extracted from medical records of a clinical trial (i.e., Sygen) and an ongoing observational cohort study (i.e., Murnau Study). The primary outcomes were concentration/levels/amount of commonly collected hematological markers at each measured time-point. Two-way ANOVA and mixed-effects regression techniques were used to account for the longitudinal data and to adjust for potential confounders. Lastly, the trajectories of hematological markers contained in both data sources were compared using the slope.
