@@ -298,13 +298,12 @@ write.csv(df_results_slope_Murnau,'results_stats/df_results_slope_Murnau.csv') #
 # slope(df_amylase)
 
 # Create table to store results
-df_results_glht_Murnau_AIS_endpoint <- data.frame(matrix(ncol = 5, nrow = 0))
+df_results_glht_Murnau_AIS <- data.frame(matrix(ncol = 5, nrow = 0))
 x <- c("Bloodmarker", "Comparison", "Effect", "p-value", "adjusted p-value")
-colnames(df_results_glht_Murnau_AIS_endpoint) <- x
+colnames(df_results_glht_Murnau_AIS) <- x
 
 for (i in 1:length(list_names_murnau)){ # go through each haematological marker
   df = list_murnau[[i]] # select corresponding data frame
-  df_subset = subset(df, time == 7)
   row_name <- c(list_names_murnau[i]) # select corresponding haematological marker name
   df$AIS <- as.factor(df$AIS) # make sure AIS grade/time column is a factor
   #df$time <- as.factor(df$time) # make sure AIS grade/time column is a factor
@@ -314,12 +313,12 @@ for (i in 1:length(list_names_murnau)){ # go through each haematological marker
                    round(temp$test$coefficients[[j]], digits = 3), # extract coefficient
                    formatC(temp$test$pfunction()[[j]], format = "e", digits = 2), # extract p function
                    formatC(temp$test$pvalues[[j]], format = "e", digits = 2)) # extract p values
-    df_results_glht_Murnau_AIS_endpoint[nrow(df_results_glht_Murnau_AIS_endpoint) + 1, "Bloodmarker"] <- row_name # create a new row and give it the name of the haematological marker
-    df_results_glht_Murnau_AIS_endpoint[nrow(df_results_glht_Murnau_AIS_endpoint), 2:5] <- row_value # report results for haematological marker i, pair j
+    df_results_glht_Murnau_AIS[nrow(df_results_glht_Murnau_AIS) + 1, "Bloodmarker"] <- row_name # create a new row and give it the name of the haematological marker
+    df_results_glht_Murnau_AIS[nrow(df_results_glht_Murnau_AIS), 2:5] <- row_value # report results for haematological marker i, pair j
   }
 }
 
-write.csv(df_results_glht_Murnau_AIS_endpoint,'results_stats/df_results_glht_Murnau_AIS_endpoint.csv') # save lmer results in .csv format
+write.csv(df_results_glht_Murnau_AIS,'results_stats/df_results_glht_Murnau_AIS.csv') # save lmer results in .csv format
 
 # ------------------------------------------------------------------------------------------------------------------
 
@@ -446,13 +445,13 @@ write.csv(df_results_slope_sygen,'results_stats/df_results_slope_sygen.csv')
 try <- anova_test_1time(df_subset)
 
 # Create table to store results
-df_results_glht_Sygen_AIS_baseline <- data.frame(matrix(ncol = 6, nrow = 0))
+df_results_glht_Sygen_AIS <- data.frame(matrix(ncol = 6, nrow = 0))
 x <- c("Bloodmarker", "Variable", "diff", "lwr", "upr", "p.adj")
-colnames(df_results_glht_Sygen_AIS_baseline) <- x
+colnames(df_results_glht_Sygen_AIS) <- x
 
 for (i in 1:length(list_names_sygen)){ # go through each haematological marker
   df = list_sygen[[i]] # select corresponding data frame
-  df_subset = subset(df, time == 0)
+  #df_subset = subset(df, time == 0)
   df_subset$AIS <- as.factor(df_subset$AIS)
   temp_fct <- anova_test_1time(df_subset)
   temp <- data.frame(temp_fct$AIS)
@@ -462,13 +461,13 @@ for (i in 1:length(list_names_sygen)){ # go through each haematological marker
                    formatC(temp["lwr"][[1]][j], digits = 3),
                    formatC(temp["upr"][[1]][j], digits = 3),
                    formatC(temp["p.adj"][[1]][j], format = "e", digits = 2))
-    df_results_glht_Sygen_AIS_baseline[nrow(df_results_glht_Sygen_AIS_baseline) + 1,"Bloodmarker"] <- row_name
-    df_results_glht_Sygen_AIS_baseline[nrow(df_results_glht_Sygen_AIS_baseline),"Variable"] <- row.names(result)[j]
-    df_results_glht_Sygen_AIS_baseline[nrow(df_results_glht_Sygen_AIS_baseline), 3:6] <- row_value
+    df_results_glht_Sygen_AIS[nrow(df_results_glht_Sygen_AIS) + 1,"Bloodmarker"] <- row_name
+    df_results_glht_Sygen_AIS[nrow(df_results_glht_Sygen_AIS),"Variable"] <- row.names(result)[j]
+    df_results_glht_Sygen_AIS[nrow(df_results_glht_Sygen_AIS), 3:6] <- row_value
   }
 }
 
-write.csv(df_results_glht_Sygen_AIS_baseline,'results_stats/df_results_glht_Sygen_AIS_baseline.csv')
+write.csv(df_results_glht_Sygen_AIS,'results_stats/df_results_glht_Sygen_AIS.csv')
 
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -542,56 +541,4 @@ write.csv(df_results_ANOVA_combined,'results_stats/df_results_ANOVA_combined_typ
 
 # ------------------------------------------------------------------------------------------------------------------
 
-# Create heatmaps summarising the pvalue from lmer/glht tests 
-
-data_test <- data.frame(matrix(ncol = 3, nrow = 0))
-x <- c("Blood markers", "Time", "pvalue")
-colnames(data_test) <- x
-
-for (i in 1:length(list_names_murnau)){
-  df = list_murnau[[i]]
-  df$time <- as.factor(df$time)
-  temp <- pairwise_test(df, list_names_murnau[i])
-  row_name <- c(list_names_murnau[i])
-  for (j in 1:length(names(temp$test$coefficients))){
-    row_value <- c(names(temp$test$coefficients)[j],
-                   formatC(temp$test$pvalues[[j]]))
-    data_test[nrow(data_test) + 1, "Blood markers"] <- row_name
-    data_test[nrow(data_test), 2:3] <- row_value
-  }
-}
-#data_test
-
-# Make p-value numerics
-data_test$pvalue <- as.numeric(as.character(data_test$pvalue))
-
-# Select which p-values to write in the heatmaps (only significant ones)
-for (i in 1:dim(data_test)[1]){
-  if (data_test[i,"pvalue"] < 0.05){
-    #data_test[i,"sign"] = formatC(data_test[i,"pvalue"], format = "e", digits = 2)
-    data_test[i,"sign"] = '*'
-  } else {
-    data_test[i,"sign"] = ''
-  }
-}
-
-# Reshape names of the variables to display it in a more readable fashion 
-for (i in 1:dim(data_test)[1]){
-  x <- data_test[i, 'Time']
-  x <- strsplit(x, '[ - ]')
-  x <- x[[1]][c(3,2,1)]
-  try <- paste0(x[1], x[2], x[3])
-  data_test[i, 'Times compared'] <- try
-}
-
-# Create heatmap
-data_test$`Times compared` <- f(data_test$`Times compared`)
-colors <- c("#D7191C", "#FDAE61", "#ABD9E9", "#2C7BB6")
-ggplot(data = data_test, aes(x = `Times compared`, y = `Blood markers`)) + # x axis : to adapt (time or AIS grades)
-  geom_tile(aes(fill = pvalue)) + # fill cells of heatmap according to p-value
-  geom_text(aes(label=sign), color="white") + # add value in cells when p-value is significant
-  scale_fill_gradientn(colors = colors, breaks=c(0.001, 0.25, 0.5, 0.75, 1)) + # using a continuous gradient for filling
-  ggtitle("Statistical results from liner mixed model \n Time in murnau study") + # title : to adapt
-  theme(plot.title = element_text(hjust = 0.5, face="bold")) +
-  theme(axis.text.x = element_text(angle = 90))
 
